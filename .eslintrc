@@ -1,0 +1,6 @@
+{
+  "extends": ["standard-react", "standard"],
+  "rules": {
+    "space-before-function-paren": 0
+  }
+}
