@@ -1,8 +1,8 @@
 {
   "name": "react-emoj",
-  "version": "0.1.0-0",
+  "version": "0.1.0",
   "description": "Easy-use emoji component for React",
-  "main": "./src/index.js",
+  "main": "./dist/react-emoj.min.js",
   "scripts": {
     "build": "webpack --config webpack.dist.config.js",
     "clean": "rimraf ./dist",
