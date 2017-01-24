@@ -1,5 +1,5 @@
 import test from 'ava'
-import { Emoji } from '../dist/react-emoj'
+import { Emoji } from '../src'
 import emoji from '../src/emoji/emoji.json'
 
 test('Emoji provides `emoji` and `emojify`', t => {
