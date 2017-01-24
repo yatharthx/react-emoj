@@ -25,14 +25,26 @@ const emojify = (tpl, defaultEmo = '') => {
 
               return (index % 2 === 0)
                 ? str
-                : (emoji[str] ? emoji[str] : defaultEmo)
+                : (emoji[str] ? emoji[str] : (
+                  emoji[defaultEmo] ? emoji[defaultEmo] : ''
+                ))
             })
             .join('')
 }
 
+const fromArray = (emojiList, defaultEmo = '') => (
+  emojiList.map(emo => (
+             emoji[emo] ? emoji[emo] : (
+               emoji[defaultEmo] ? emoji[defaultEmo] : ''
+             )
+           ))
+           .join('')
+)
+
 const Emoji = {
   emoji,
-  emojify
+  emojify,
+  fromArray
 }
 
 export default Emoji

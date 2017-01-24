@@ -18,9 +18,9 @@ test('.emojify() should replace emoji codes with emoji', t => {
   t.is(emojifiedTpl, 'I had a ☕️')
 })
 
-test('.emojify() should apply default character when missing emoji', t => {
+test('.emojify() should apply defaultEmo when missing emoji', t => {
   const tpl = `I had some :syrup:`
-  const emojifiedTpl = Emoji.emojify(tpl, '♥️')
+  const emojifiedTpl = Emoji.emojify(tpl, 'hearts')
   t.is(emojifiedTpl, `I had some ♥️`)
 })
 
@@ -32,4 +32,14 @@ test('.emojify() should throw error for invalid `template` type', t => {
 test('.emojify() should throw error for invalid `missing emoji` type', t => {
   const err = t.throws(function() { Emoji.emojify(':coffee:', () => {}) })
   t.is(err.message, `\n        the default emoji character is expected to be of type \`string\`.\n        Instead, got \`function\`.\n      `)
+})
+
+test('.fromArray() should generate an emoji string from array', t => {
+  const emojiList = ['coffee', 'sunglasses']
+  t.is(Emoji.fromArray(emojiList), '☕️😎')
+})
+
+test('.fromArray() should apply defaultEmo when missing emoji', t => {
+  const emojiList = ['coffee', 'syrup']
+  t.is(Emoji.fromArray(emojiList, 'sunglasses'), '☕️😎')
 })
