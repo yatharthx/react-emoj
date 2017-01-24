@@ -7,7 +7,8 @@
     "build": "webpack --config webpack.dist.config.js",
     "clean": "rimraf ./dist",
     "start": "webpack-dev-server",
-    "test": "nyc ava --verbose"
+    "test": "NODE_ENV=test nyc ava --verbose",
+    "test:full": "nyc ava && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,9 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.18.0",
+    "babel-register": "^6.22.0",
+    "coveralls": "^2.11.15",
+    "enzyme": "^2.7.1",
     "eslint": "^3.14.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-config-standard-react": "^4.2.0",
@@ -44,6 +48,7 @@
     "json-loader": "^0.5.4",
     "nyc": "^10.1.2",
     "react": "^15.0.0",
+    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.0.0",
     "rimraf": "^2.5.4",
     "webpack": "^1.12.14",
@@ -55,5 +60,11 @@
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   }
 }
