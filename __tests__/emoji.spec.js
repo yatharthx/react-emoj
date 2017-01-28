@@ -39,6 +39,11 @@ test('.fromArray() should generate an emoji string from array', t => {
   t.is(Emoji.fromArray(emojiList), '☕️😎')
 })
 
+test('.fromArray() should generate an emoji string from array with template style emoji codes', t => {
+  const emojiList = ['coffee', ':sunglasses:']
+  t.is(Emoji.fromArray(emojiList), '☕️😎')
+})
+
 test('.fromArray() should apply defaultEmo when missing emoji', t => {
   const emojiList = ['coffee', 'syrup']
   t.is(Emoji.fromArray(emojiList, 'sunglasses'), '☕️😎')

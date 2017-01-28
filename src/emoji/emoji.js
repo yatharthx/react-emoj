@@ -1,6 +1,7 @@
 import emoji from './emoji.json'
 
-const tplSplitter = /:([a-zA-Z0-9_\-+]+):/g
+const tplSplitter = tpl => tpl.split(/:([a-zA-Z0-9_\-+]+):/g)
+const colonTrimmer = emo => emo.replace(/^[:\uFEFF\xA0]+|[:\uFEFF\xA0]+$/g, '')
 
 const emojify = (tpl, defaultEmo = '') => {
   if (typeof tpl !== 'string') {
@@ -19,27 +20,30 @@ const emojify = (tpl, defaultEmo = '') => {
 
   if (!tpl) return ''
 
-  return tpl.split(tplSplitter)
-            .map((str, index) => {
-              if (!str) { return '' }
+  return tplSplitter(tpl)
+           .map((str, index) => {
+             if (!str) { return '' }
 
-              return (index % 2 === 0)
-                ? str
-                : (emoji[str] ? emoji[str] : (
-                  emoji[defaultEmo] ? emoji[defaultEmo] : ''
-                ))
-            })
-            .join('')
+             return (index % 2 === 0)
+               ? str
+               : (emoji[str] ? emoji[str] : (
+                 emoji[defaultEmo] ? emoji[defaultEmo] : ''
+               ))
+           })
+           .join('')
 }
 
-const fromArray = (emojiList, defaultEmo = '') => (
-  emojiList.map(emo => (
-             emoji[emo] ? emoji[emo] : (
-               emoji[defaultEmo] ? emoji[defaultEmo] : ''
-             )
-           ))
-           .join('')
-)
+const fromArray = (emojiList, defaultEmo = '') => {
+  defaultEmo = colonTrimmer(defaultEmo)
+
+  return emojiList.map(emo => {
+    emo = colonTrimmer(emo)
+    return emoji[emo] ? emoji[emo] : (
+      emoji[defaultEmo] ? emoji[defaultEmo] : ''
+    )
+  })
+  .join('')
+}
 
 const Emoji = {
   emoji,
