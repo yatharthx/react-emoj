@@ -1,4 +1,4 @@
-import emoji from './emoji.json'
+import emoji from 'emotikon'
 
 const tplSplitter = tpl => tpl.split(/:([a-zA-Z0-9_\-+]+):/g)
 const colonTrimmer = emo => emo.replace(/^[:\uFEFF\xA0]+|[:\uFEFF\xA0]+$/g, '')

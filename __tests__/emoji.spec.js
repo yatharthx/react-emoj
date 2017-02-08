@@ -1,6 +1,6 @@
 import test from 'ava'
 import { Emoji } from '../src'
-import emoji from '../src/emoji/emoji.json'
+import emoji from 'emotikon'
 
 test('Emoji provides `emoji` and `emojify`', t => {
   t.is(typeof Emoji.emoji, 'object')
