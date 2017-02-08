@@ -1,6 +1,6 @@
 {
   "name": "react-emoj",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Easy-use emoji component for React",
   "main": "./dist/react-emoj.min.js",
   "scripts": {
